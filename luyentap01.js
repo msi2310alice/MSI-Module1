@@ -44,4 +44,6 @@ if (countV>0) {
 } else {
     console.log("V is not in the array.");
 }
+//bài 7
+
 
