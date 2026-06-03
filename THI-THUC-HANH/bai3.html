@@ -6,6 +6,70 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <p id="show"></p>
+    <script>
+        let namNhuan;
+        function kiemTraInput(){
+            let input;
+            let month;
+            let year;
+
+            do {
+                input = prompt("Nhập tháng/năm theo định dạng MM/yyyy:");
+
+                let array = input.split("/");
+
+                month = parseInt(array[0]);
+                year = parseInt(array[1]);
+
+                if (
+                    array.length !== 2 ||
+                    isNaN(month) ||
+                    isNaN(year) ||
+                    month < 1 ||
+                    month > 12 ||
+                    array[0].length !== 2 ||
+                    array[1].length !== 4
+                ) {
+                    alert("Sai định dạng! Vui lòng nhập dạng MM/yyyy.");
+                }
+
+            } while (
+                input.split("/").length !== 2 ||
+                isNaN(month) ||
+                isNaN(year) ||
+                month < 1 ||
+                month > 12 ||
+                input.split("/")[0].length !== 2 ||
+                input.split("/")[1].length !== 4
+            );
+            return [month, year];
+        }
+        function ktraNhuan(year){
+            if (((year % 4 === 0) && (year % 100 !== 0))||(year % 400 ===0)){
+                namNhuan = true;
+            } else {
+                namNhuan = false;
+            }
+            return namNhuan;
+        }
+        function tinhSoNgay(month,year){
+            let temp = ktraNhuan(year);
+            if ((month == 2)){
+                if (temp){ 
+                    document.getElementById("show").innerHTML=`Tháng ${month} có 29 ngày.`
+                } else {
+                    document.getElementById("show").innerHTML=`Tháng ${month} có 28 ngày.`
+                }
+            } else if ((month == 4)||(month == 6)||(month == 9)||(month == 11)){
+                document.getElementById("show").innerHTML=`Tháng ${month} có 30 ngày.`
+            } else {
+                document.getElementById("show").innerHTML=`Tháng ${month} có 31 ngày.`
+            }
+        }
+        let x = kiemTraInput();
+        console.log(ktraNhuan(x[1]));
+        tinhSoNgay(x[0], x[1]);
+    </script>
 </body>
 </html>
