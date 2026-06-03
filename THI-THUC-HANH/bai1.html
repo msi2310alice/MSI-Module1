@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1</title>
+</head>
+<body>
+    <p id="show1"></p>
+    <p id ="show2"></p>
+    <script>
+        let array1 = [];
+        let count = 0;
+        let text = "";
+        let sum = 0;
+        let count2 = 0;
+        while(count<51){
+            if (count <= 49){
+                let x = parseInt(prompt(`Nhập giá trị thử ${count + 1}:`));
+                array1.push(x);
+            } else {
+                alert("Bạn đã nhập đủ 50 phần tử");
+            }
+            count++;          
+        }
+        for (let i = 0; i<array1.length; i++){
+            text += array1[i] + ", ";
+        }
+        document.getElementById("show1").innerHTML = `50 phần tử bạn vừa nhập là: ${text}`;
+        for (let i = 0; i < array1.length; i++){
+            if (array1[i] % 3 == 0) {
+                sum += array1[i];
+                count2++;
+            }
+        }
+        if (count2>0) {
+            document.getElementById("show2").innerHTML = `Trung bình cộng chia hết cho 3: ${sum/count2}`;
+        } else {
+            document.getElementById("show2").innerHTML = `Không có số nào chia hết cho 3`;
+        }
+        
+    </script>
+</body>
+</html>
